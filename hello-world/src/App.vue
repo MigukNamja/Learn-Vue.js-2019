@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
-    <HelloWorld greeting="Hello World"/>
+  <div id="root">
+    <h1>
+      <HelloWorld greeting="Hello World"/>
+    </h1>
   </div>
 </template>
 
@@ -8,7 +10,7 @@
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'app',
+  name: 'root',
   components: {
     HelloWorld
   }

@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
-    <h1>{{ greeting }}</h1>
+    <h1 v-if="count === 1">Count is {{count}}</h1>
+    <h1 v-else-if="count === 2">Count is 2</h1>
+    <h1 v-else>{{ greeting }}</h1>
+    <h2 v-show="count === 1">Count is {{count}}</h2>
   </div>
 </template>
 
@@ -9,6 +12,11 @@ export default {
   name: 'HelloWorld',
   props: {
     greeting: String
+  },
+  data: function () {
+    return {
+      count: 0
+    }
   }
 }
 </script>
