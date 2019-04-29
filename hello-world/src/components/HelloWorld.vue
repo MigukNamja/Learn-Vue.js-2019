@@ -55,6 +55,18 @@ export default {
         return this.newCat + 'y'
       }
     }
+  },
+  created: function() {
+    console.log("created")
+  },
+  mounted: function() {
+    console.log("mounted")
+  },
+  updated: function() {
+    console.log("updated")
+  },
+  destroyed: function() {
+    console.log("destroyed")
   }
 }
 </script>

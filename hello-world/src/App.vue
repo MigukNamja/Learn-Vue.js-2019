@@ -2,17 +2,25 @@
   <div id="root">
     <h1>
       <HelloWorld greeting="Hello World"/>
+      <CatList cats/>
     </h1>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import CatList from './components/CatList.vue'
 
 export default {
   name: 'root',
   components: {
-    HelloWorld
+    HelloWorld,
+    CatList
+  },
+  data: function () {
+    return [
+      cats
+    ]
   }
 }
 </script>
