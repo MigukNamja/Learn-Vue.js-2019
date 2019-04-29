@@ -9,7 +9,7 @@
 
       <b-list-group class="list-group">
         <b-list-group-item
-          v-for="(answer,index) in answers" :key="index"
+          v-for="(answer,index) in shuffledAnswers" :key="index"
           @click="clickAnswer(index,answer)"
           :class="[selectedIndex === index ? 'selected' : '']"
           >
@@ -17,8 +17,14 @@
         </b-list-group-item>
       </b-list-group>
 
-      <b-button variant="primary" href="#">Submit</b-button>
-      <b-button  @click="next" variant="success" href="#">
+      <b-button
+        variant="primary"
+        @click="submitAnswer"
+        :disabled="selectedIndex === null || alreadyAnswered"
+      >
+        Submit
+      </b-button>
+      <b-button  @click="next" variant="success">
         Next
       </b-button>
     </b-jumbotron>
@@ -26,14 +32,19 @@
 </template>
 
 <script>
+import _ from 'lodash'
 export default {
   props: {
     curQuestion: Object,
-    next: Function
+    next: Function,
+    increment: Function
   },
   data() {
     return {
-      selectedIndex: null
+      selectedIndex: null,
+      correctIndex: null,
+      shuffledAnswers: [],
+      alreadyAnswered: false
     }
   },
   computed: {
@@ -44,10 +55,19 @@ export default {
     }
   },
   watch: {
-    currentQuestion() {
-      this.selectedIndex = null
-      this.shuffleAnswers()
+    curQuestion: {
+        immediate: true,
+        handler() {
+          this.selectedIndex = null
+          this.shuffleAnswers()
+          this.alreadyAnswered = false
+        }
     }
+    
+    // {
+    //   this.selectedIndex = null
+    //   this.shuffleAnswers()
+    // }
   },
   methods: {
     clickAnswer(index,answer) {
@@ -55,11 +75,24 @@ export default {
       this.selectedIndex = index
     },
     shuffleAnswers() {
-      let answers = [...this.currentQuestion.incorrect_answers, this.currentQuestion.correct_answer]
+      let answers = [...this.curQuestion.incorrect_answers, this.curQuestion.correct_answer]
+      this.shuffledAnswers = _.shuffle(answers)
+      this.correctIndex = _.indexOf(this.shuffledAnswers,this.curQuestion.correct_answer,0)
+    },
+    submitAnswer() {
+      let isCorrect = false
+      
+      if (this.selectedIndex === this.correctIndex) {
+        isCorrect = true
+      }
+
+      this.increment(isCorrect)
+      this.alreadyAnswered = true
     }
   },
   mounted() {
     console.log(this.curQuestion)
+    // this.shufflerAnswers()
   }
 }
 </script>
