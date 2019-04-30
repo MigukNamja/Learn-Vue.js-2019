@@ -11,9 +11,9 @@
         <b-list-group-item
           v-for="(answer,index) in shuffledAnswers" :key="index"
           @click="clickAnswer(index,answer)"
-          :class="[selectedIndex === index ? 'selected' : '']"
+          :class="answerClass(index)"
           >
-          {{index}} : {{answer}}
+          {{answer}}
         </b-list-group-item>
       </b-list-group>
 
@@ -77,7 +77,8 @@ export default {
     shuffleAnswers() {
       let answers = [...this.curQuestion.incorrect_answers, this.curQuestion.correct_answer]
       this.shuffledAnswers = _.shuffle(answers)
-      this.correctIndex = _.indexOf(this.shuffledAnswers,this.curQuestion.correct_answer,0)
+      // this.correctIndex = _.indexOf(this.shuffledAnswers,this.curQuestion.correct_answer,0)
+      this.correctIndex = this.shuffledAnswers.indexOf(this.curQuestion.correct_answer)
     },
     submitAnswer() {
       let isCorrect = false
@@ -88,6 +89,19 @@ export default {
 
       this.increment(isCorrect)
       this.alreadyAnswered = true
+    },
+    answerClass(index) {
+      let answerClass = ''
+      if (!this.alreadyAnswered && this.selectedIndex === index) {
+        answerClass = 'selected'
+      } else if (this.alreadyAnswered && this.correctIndex === index) {
+        answerClass = 'correct'
+      } else if (this.alreadyAnswered &&
+          this.selectedIndex === index &&
+          this.correctIndex !== index) {
+        answerClass = 'incorrect'
+      }
+      return answerClass
     }
   },
   mounted() {
