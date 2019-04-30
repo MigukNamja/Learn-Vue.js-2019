@@ -1,4 +1,4 @@
-# quiz
+# adopt-pets
 
 ## Project setup
 ```
