@@ -2,6 +2,7 @@ export default [
   {
     name: 'Dmitra',
     breed: 'cranky',
+    species: 'cat',
     gender: 'female',
     age: 11,
     color: 'orange',
@@ -12,6 +13,7 @@ export default [
   {
     name: 'Obi',
     breed: 'tabby',
+    species: 'cat',
     gender: 'male',
     age: 9,
     color: 'orange',
@@ -22,6 +24,7 @@ export default [
   {
     name: 'Roger',
     breed: 'tabby',
+    species: 'cat',
     gender: 'male',
     age: 20,
     color: 'gray',
@@ -32,6 +35,7 @@ export default [
   {
     name: 'Kitkat',
     breed: 'bombay',
+    species: 'cat',
     gender: 'female',
     age: 0.9,
     color: 'black',
