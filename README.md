@@ -1,1 +1,1 @@
-# File and assets to follow along with, learn, and explore more as I go through 'Learn Vue.js - Full Course for Beginners - 2019' from freeCodeCamp.org . (https://www.youtube.com/watch?v=4deVCNJq3qc&t=7918s)
+# Files and assets to follow along with, learn, and explore more as I go through 'Learn Vue.js - Full Course for Beginners - 2019' from freeCodeCamp.org . (https://www.youtube.com/watch?v=4deVCNJq3qc&t=7918s)
